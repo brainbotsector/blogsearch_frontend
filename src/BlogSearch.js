@@ -23,7 +23,7 @@ const BlogSearch = () => {
     setError("");
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/blogs?q=${searchQuery}&filter=${filter}`
+        `https://blogsearch-backend.onrender.com/api/blogs?q=${searchQuery}&filter=${filter}`
       );
       setBlogs(response.data.blogs);
     } catch (error) {
@@ -117,94 +117,3 @@ const BlogSearch = () => {
 };
 
 export default BlogSearch;
-
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "./styles.css";
-// import { FaSun, FaMoon } from 'react-icons/fa';
-
-// const BlogSearch = () => {
-//     const [blogs, setBlogs] = useState([]);
-//     const [searchQuery, setSearchQuery] = useState("");
-//     const [loading, setLoading] = useState(false);
-//     const [error, setError] = useState("");
-//     const [filter, setFilter] = useState(""); // Filter state
-//     const [darkMode, setDarkMode] = useState(false); // Dark mode state
-
-//     const toggleTheme = () => setDarkMode(!darkMode);
-
-//     const handleSearch = async () => {
-//         setLoading(true);
-//         setError("");
-//         try {
-//             const response = await axios.get(
-//                 `http://localhost:5000/api/blogs?q=${searchQuery}&filter=${filter}`
-//             );
-//             setBlogs(response.data);
-//         } catch (error) {
-//             console.error("Error fetching blogs:", error);
-//             setError("Failed to fetch blogs. Please try again later.");
-//         }
-//         setLoading(false);
-//     };
-
-//     return (
-//         <div className={`app-container ${darkMode ? "dark" : "light"}`}>
-//             <div className="theme-toggle" onClick={toggleTheme}>
-//                 <button onClick={toggleTheme} className="theme-button">
-//                 {darkMode ? <FaMoon size={30} /> : <FaSun size={30} />}
-//                 </button>
-//             </div>
-//             <h1 className="title">Discover Blogs</h1>
-//             <div className="search-box">
-//                 <input
-//                     type="text"
-//                     placeholder="Search blogs..."
-//                     value={searchQuery}
-//                     onChange={(e) => setSearchQuery(e.target.value)}
-//                     className="search-input"
-//                 />
-//                 <select
-//                     value={filter}
-//                     onChange={(e) => setFilter(e.target.value)}
-//                     className="filter-dropdown"
-//                 >
-//                     <option value="">All Categories</option>
-//                     <option value="Tech">Tech</option>
-//                     <option value="Lifestyle">Lifestyle</option>
-//                     <option value="Business">Business</option>
-//                 </select>
-//                 <button onClick={handleSearch} className="search-button">
-//                     Search
-//                 </button>
-//             </div>
-//             {loading && <div className="skeleton"></div>}
-//             {error && <p className="error">{error}</p>}
-//             <div className="results">
-//                 {blogs.length > 0 ? (
-//                     blogs.map((blog, index) => (
-//                         <div
-//                             key={index}
-//                             className="blog-item"
-//                             data-aos="fade-up"
-//                         >
-//                             <h3>{blog.title}</h3>
-//                             <p>{blog.description}</p>
-//                             <a
-//                                 href={blog.url}
-//                                 target="_blank"
-//                                 rel="noopener noreferrer"
-//                             >
-//                                 Read more
-//                             </a>
-//                         </div>
-//                     ))
-//                 ) : (
-//                     !loading && <p className="no-results">No blogs found</p>
-//                 )}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default BlogSearch;
