@@ -23,7 +23,7 @@ const BlogSearch = () => {
     setError("");
     try {
       const response = await axios.get(
-        `https://blogsearch-backend.onrender.com/api/blogs?q=${searchQuery}&filter=${filter}`
+        `https://blogsearch-backend.onrender.com/api/blogs?q=${searchQuery}`
       );
       setBlogs(response.data.blogs);
     } catch (error) {
